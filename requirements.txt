@@ -1,0 +1,4 @@
+django
+djangorestframework
+django-channels
+django-debug-toolbar
