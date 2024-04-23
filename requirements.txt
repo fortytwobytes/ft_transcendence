@@ -1,4 +1,9 @@
+
+black
 django
-djangorestframework
 django-channels
 django-debug-toolbar
+djangorestframework
+flake8
+isort
+pre-commit
