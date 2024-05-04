@@ -3,7 +3,7 @@ VENV_DIR := venv
 VENV_ACTIVATE := $(VENV_DIR)/bin/activate
 PYTHON := $(VENV_DIR)/bin/python
 PIP := $(PYTHON) -m pip
-DJANGO_MANAGE := $(PYTHON) manage.py
+DJANGO_MANAGE := $(PYTHON) srcs/manage.py
 SETTINGS := transcendence.settings
 
 # Create virtual environment if not exists
@@ -43,7 +43,8 @@ collectstatic: $(VENV_DIR)
 # Clean pycache
 clean:
 	find . -name "*.pyc" -exec rm -rf {} \; 2> /dev/null || true
-	find . -name "__pycache__" -exec rm -rf {} \; 2> /dev/null || true
+	find . -name "*__pycache__" -exec rm -rf {} \; 2> /dev/null || true
+	find . -type d -name "*mypy_cache" -exec rm -rf {} \; 2> /dev/null || true
 
 # Help target
 help:
