@@ -1,12 +1,25 @@
 ---
 services:
-  transcendence:
+  backend:
+    container_name: backend
     build:
-      context: .
+      context: ./srcs/backend
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
     volumes:
-      - .:/code/
+      - ./srcs/backend:/backend
     command: ["python", "manage.py", "runserver", "0.0.0.0:8080"]
+    tty: true
+
+  frontend:
+    container_name: frontend
+    build:
+      context: ./srcs/frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./srcs/frontend:/frontend
+    command: ["npm", "start"]
     tty: true

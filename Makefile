@@ -3,7 +3,8 @@ VENV_DIR := venv
 VENV_ACTIVATE := $(VENV_DIR)/bin/activate
 PYTHON := $(VENV_DIR)/bin/python
 PIP := $(PYTHON) -m pip
-DJANGO_MANAGE := $(PYTHON) srcs/manage.py
+BACKEND_DIR := srcs/backend
+DJANGO_MANAGE := $(PYTHON) $(BACKEND_DIR)/manage.py
 SETTINGS := transcendence.settings
 
 # Create virtual environment if not exists
@@ -13,7 +14,7 @@ $(VENV_DIR):
 # Install project dependencies
 install: $(VENV_DIR)
 	. $(VENV_ACTIVATE) && \
-	$(PIP) install -r requirements.txt
+	$(PIP) install -r $(BACKEND_DIR)/requirements.txt
 
 # Run migrations
 migrate: $(VENV_DIR)

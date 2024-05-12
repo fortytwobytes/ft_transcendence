@@ -24,10 +24,10 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install -r requirements.txt
+        pip install -r srcs/backend/requirements.txt
 
     - name: Run linting and formatting checks
       run: |
-        black --check .
-        isort --check-only .
-        flake8 .
+        black --check . --config srcs/backend/pyproject.toml
+        isort --check-only . --settings-path srcs/backend/.isort.cfg
+        flake8 . --config srcs/backend/.flake8
