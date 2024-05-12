@@ -1,2 +1,7 @@
+# Backend
 __pycache__/
 venv/
+db.sqlite3
+
+# Frontend
+node_modules/

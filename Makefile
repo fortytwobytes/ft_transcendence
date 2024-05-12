@@ -3,7 +3,8 @@ VENV_DIR := venv
 VENV_ACTIVATE := $(VENV_DIR)/bin/activate
 PYTHON := $(VENV_DIR)/bin/python
 PIP := $(PYTHON) -m pip
-DJANGO_MANAGE := $(PYTHON) manage.py
+BACKEND_DIR := srcs/backend
+DJANGO_MANAGE := $(PYTHON) $(BACKEND_DIR)/manage.py
 SETTINGS := transcendence.settings
 
 # Create virtual environment if not exists
@@ -13,7 +14,7 @@ $(VENV_DIR):
 # Install project dependencies
 install: $(VENV_DIR)
 	. $(VENV_ACTIVATE) && \
-	$(PIP) install -r requirements.txt
+	$(PIP) install -r $(BACKEND_DIR)/requirements.txt
 
 # Run migrations
 migrate: $(VENV_DIR)
@@ -43,7 +44,8 @@ collectstatic: $(VENV_DIR)
 # Clean pycache
 clean:
 	find . -name "*.pyc" -exec rm -rf {} \; 2> /dev/null || true
-	find . -name "__pycache__" -exec rm -rf {} \; 2> /dev/null || true
+	find . -name "*__pycache__" -exec rm -rf {} \; 2> /dev/null || true
+	find . -type d -name "*mypy_cache" -exec rm -rf {} \; 2> /dev/null || true
 
 # Help target
 help:
